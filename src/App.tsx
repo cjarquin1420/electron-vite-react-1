@@ -1,4 +1,4 @@
-import MainScreen from './System/MainScreen';
+import MainScreen from './page/System/MainScreen';
 
 const App = () => {
   return (
