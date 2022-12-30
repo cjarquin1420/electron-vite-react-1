@@ -1,9 +1,11 @@
-function App() {
+import MainScreen from './System/MainScreen';
+
+const App = () => {
   return (
     <div className="App">
-      <h1>Utilities</h1>
+      <MainScreen />
     </div>
   );
-}
+};
 
 export default App;
