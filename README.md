@@ -1,4 +1,4 @@
-# electron-vite-react
+# 3S Silicon Tech Utilities
 
 ## 👀 Overview
 
