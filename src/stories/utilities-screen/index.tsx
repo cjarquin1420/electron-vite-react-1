@@ -12,8 +12,6 @@ type utilitiesScreenType = {
     commandList: Array<string>
 }
 
-const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
-
 export const UtilitiesScreen: React.FC<utilitiesScreenType> = ({
     commandList = [],
     ...props
