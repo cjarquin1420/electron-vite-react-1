@@ -49,6 +49,7 @@
     "@emotion/styled": "^11.10.5",
     "@fontsource/roboto": "^4.5.8",
     "@mui/material": "^5.11.2",
-    "@types/node": "^18.11.18"
+    "@types/node": "^18.11.18",
+    "moment": "^2.29.4"
   }
 }

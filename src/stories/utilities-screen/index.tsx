@@ -18,23 +18,23 @@ export const UtilitiesScreen: React.FC<utilitiesScreenType> = ({
     commandList = [],
     ...props
 }) => {
-    const [internalArray, setInternalArray] = React.useState<Array<string>>([])
+    // const [internalArray, setInternalArray] = React.useState<Array<string>>([])
 
-    const setData = async (array: Array<string>) => {
-        const arr: Array<string> = []
-        for (const el of array) {
-            arr.push(el)
-            setInternalArray([
-                ...arr.filter((x) => x !== el),
-                el,
-            ])
-            await sleep(1000)
-        }
-    }
+    // const setData = async (array: Array<string>) => {
+    //     const arr: Array<string> = []
+    //     for (const el of array) {
+    //         arr.push(el)
+    //         setInternalArray([
+    //             ...arr.filter((x) => x !== el),
+    //             el,
+    //         ])
+    //         await sleep(1000)
+    //     }
+    // }
 
-    React.useEffect(() => {
-        setData(commandList)
-    }, [commandList])
+    // React.useEffect(() => {
+    //     setData(commandList)
+    // }, [commandList])
 
     return (
         <MainLayout>
@@ -72,9 +72,9 @@ export const UtilitiesScreen: React.FC<utilitiesScreenType> = ({
                 </BoxComponent> 
             </BoxComponent>
             <BoxComponent height='1px' backgroundColor='disabled' my='20px' />
-            <BoxComponent>
-                {internalArray.map((comand) => {
-                    return <SiliconText text={comand} variant='small' color='primary' />
+            <BoxComponent overflowY='auto'>
+                {commandList.map((comand) => {
+                    return <SiliconText text={comand} variant='body' />
                 })}
             </BoxComponent>
         </MainLayout>

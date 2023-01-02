@@ -2,18 +2,6 @@ import React from 'react'
 import Box, { BoxProps } from '@mui/material/Box';
 import { defaultTheme } from '../config/theme';
 
-
-type SxType = Omit<BoxProps['sx'],
-    'display'
-    | 'paddingX'
-    | 'paddingY'
-    | 'marginY'
-    | 'marginX'
-    | 'width'
-    | 'height'
-    | 'backgroundColor'
->
-
 export type BoxType = {
     children?: React.ReactNode,
     width?: string
@@ -23,7 +11,7 @@ export type BoxType = {
     mx?: string
     my?: string
     backgroundColor?: keyof typeof defaultTheme.color
-} & BoxProps
+} & Omit<BoxProps, 'sx'> & BoxProps['sx']
 
 const BoxComponent: React.FC<BoxType> = ({
     children,
@@ -34,7 +22,6 @@ const BoxComponent: React.FC<BoxType> = ({
     px,
     py,
     backgroundColor = 'transparent',
-    sx = {},
     ...props
 }) => {
  return (
@@ -49,7 +36,6 @@ const BoxComponent: React.FC<BoxType> = ({
         paddingY: py,
         marginX: mx,
         marginY: my,
-        ...sx,
         ...props,
       }}
       {...props}
