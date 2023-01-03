@@ -12,9 +12,22 @@ export const useBackup = (props: useBackupType) => {
     const CurrentDate = moment().format('YYYYMMDD')
     const PathCurrent = process.cwd()
     const PathDBOS = 'C:\\DBOS\\'
+    let Path3SystemBackup = 'string'
 
     const Backup3System = () => {
-        // code here
+        if (Path3SystemBackup.includes(CurrentDate)) {
+            Path3SystemBackup = nextDir(Path3SystemBackup);
+          } else {
+            Path3SystemBackup = "d:\\backup\\3System_" + CurrentDate + "\\";
+          }
+          //txtScript.appendText("\r\n" + "備份 " + Path3System + " 目錄到 " + Path3SystemBackup);
+          
+          // 記錄 3System 備份路徑
+        //   if (Directory.exists(Path3System)) {
+        //     copyDirectory(Path3System, Path3SystemBackup);
+        //   }
+          //txtBackupDir.text = Path3SystemBackup;
+          return true;
     }
 
     const backupRegTo3System = async () => {
@@ -53,3 +66,11 @@ export const useBackup = (props: useBackupType) => {
         execute,
     }
 }
+
+function backup3System() {
+    throw new Error('Function not implemented.')
+}
+function nextDir(Path3SystemBackup: string): string {
+    throw new Error('Function not implemented.')
+}
+
