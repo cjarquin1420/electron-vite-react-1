@@ -34,7 +34,7 @@ export const defaultTheme: ITheme = {
         primary: 'blue',
         secondary: 'gray',
         text: 'black',
-        backgroundColor: 'white',
+        backgroundColor: '#EAEAEA',
         disabled: 'gray',
         error: 'red',
         success: 'green',
