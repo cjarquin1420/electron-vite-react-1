@@ -14,6 +14,7 @@ type variantsType = {
     subTitle: variantType
     body: variantType
     small: variantType
+    button: variantType
 }
 
 export const variants: variantsType = {
@@ -41,6 +42,12 @@ export const variants: variantsType = {
         color: defaultTheme.color.text,
         textTransform: 'none',
     },
+    button: {
+        fontSize: 14,
+        fontWeight: defaultTheme.fontWeight.default,
+        color: defaultTheme.color.text,
+        textTransform: 'uppercase',
+    }
 }
 
 type SiliconTextProps = {
@@ -48,7 +55,7 @@ type SiliconTextProps = {
     variant?: keyof typeof variants
     color?: keyof typeof defaultTheme.color
     fontWeight?: keyof typeof defaultTheme.fontWeight
-} & Pick<TypographyProps, 'lineHeight' | 'textAlign'>
+} & Pick<TypographyProps, 'lineHeight' | 'textAlign' | 'fontSize'>
 
 export const SiliconText: React.FC<SiliconTextProps> = ({
     text,

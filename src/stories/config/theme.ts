@@ -10,6 +10,7 @@ export interface ITheme {
         warning: string
         info: string
         transparent: string
+        backgroundOverlay: string
     }
     shadow: {
         small: string
@@ -40,7 +41,8 @@ export const defaultTheme: ITheme = {
         success: 'green',
         warning: 'orange',
         info: 'skyblue',
-        transparent: 'transparent'
+        transparent: 'transparent',
+        backgroundOverlay: 'rgba(0, 0, 0, 0.4)'
     },
     shadow: {
         small: '0 2px 2px rgba(0, 0, 0, 0.1)',

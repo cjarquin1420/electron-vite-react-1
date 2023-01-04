@@ -1,40 +1,23 @@
 import React from 'react'
-import { BoxComponent, UtilitiesScreen } from '../../stories';
+import { BoxComponent, useAlert, UtilitiesScreen } from '../../stories';
 import { useBackup } from '../../lib'
-import Swal from "sweetalert2"
 
 const MainScreen: React.FC = () => {
-  const [commands, setCommands] = React.useState<Array<string>>([])
-  // const [lastCommand, setLastCommand] = React.useState<string>('')
-  // const tempCommands = React.useMemo(() => {
-  //   const value: Array<string> = [
-  //     ...commands,
-  //     lastCommand
-  //   ]
-
-  //   return value
-  // }, [lastCommand])
-
-  // React.useEffect(() => {
-  //   setCommands(tempCommands)
-  // }, [tempCommands])
-
   const backupUitls = useBackup()
+  const alert = useAlert()
+
+  const [commands, setCommands] = React.useState<Array<string>>([])
 
   const quitAlert = () => {
-    Swal.fire({
+    alert.open({
       title: "Are you sure you want to exit?",
-      text: "You will terminate the program!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#474E68",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        window.close();
-      }
-    });
+      message: "You will terminate the program!",
+      okText: "Done",
+      cancelText: "cancel",
+      onOk: () => {
+        window.close()
+      },
+    })
   };
 
   return (
