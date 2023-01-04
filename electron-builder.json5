@@ -11,6 +11,9 @@
     "dist-electron",
     "dist"
   ],
+  "extraFiles": [
+    "src/external-libs/*"
+  ],
   "mac": {
     "artifactName": "${productName}_${version}.${ext}",
     "target": [
