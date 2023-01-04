@@ -1,4 +1,4 @@
-import { exec, execFile } from 'child_process'
+import { exec } from 'child_process'
 
 export interface IBackupResult {
     commands: Array<string>
@@ -38,3 +38,4 @@ export const useBackup = () => {
         execute,
     }
 }
+

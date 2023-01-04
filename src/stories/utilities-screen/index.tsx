@@ -1,20 +1,20 @@
-import React from 'react'
-import BoxComponent from '../Box'
-import { SiliconButton } from '../button/index'
-import { MainLayout } from '../main-layout'
-import { SiliconText } from '../text'
+import React from "react";
+import BoxComponent from "../Box";
+import { SiliconButton } from "../button/index";
+import { MainLayout } from "../main-layout";
+import { SiliconText } from "../text";
 
 type utilitiesScreenType = {
-    onBackup?: () => void
-    onRollback?: () => void
-    onInstall?: () => void
-    onExit?: () => void
-    commandList: Array<string>
-}
+  onBackup?: () => void;
+  onRollback?: () => void;
+  onInstall?: () => void;
+  onExit?: () => void;
+  commandList: Array<string>;
+};
 
 export const UtilitiesScreen: React.FC<utilitiesScreenType> = ({
-    commandList = [],
-    ...props
+  commandList = [],
+  ...props
 }) => {
     return (
         <MainLayout>
@@ -47,7 +47,9 @@ export const UtilitiesScreen: React.FC<utilitiesScreenType> = ({
                     <SiliconButton
                         text='exit'
                         variant='contained'
-                        onPress={() => console.log('press exit')}
+                        onPress={() => {
+                          if (props.onExit) props.onExit()
+                        }}
                     />
                 </BoxComponent> 
             </BoxComponent>
