@@ -16,24 +16,6 @@ export const UtilitiesScreen: React.FC<utilitiesScreenType> = ({
     commandList = [],
     ...props
 }) => {
-    // const [internalArray, setInternalArray] = React.useState<Array<string>>([])
-
-    // const setData = async (array: Array<string>) => {
-    //     const arr: Array<string> = []
-    //     for (const el of array) {
-    //         arr.push(el)
-    //         setInternalArray([
-    //             ...arr.filter((x) => x !== el),
-    //             el,
-    //         ])
-    //         await sleep(1000)
-    //     }
-    // }
-
-    // React.useEffect(() => {
-    //     setData(commandList)
-    // }, [commandList])
-
     return (
         <MainLayout>
             <BoxComponent
@@ -71,8 +53,8 @@ export const UtilitiesScreen: React.FC<utilitiesScreenType> = ({
             </BoxComponent>
             <BoxComponent height='1px' backgroundColor='disabled' my='20px' />
             <BoxComponent overflowY='auto'>
-                {commandList.map((comand) => {
-                    return <SiliconText text={comand} variant='body' />
+                {commandList.map((comand, index) => {
+                    return <SiliconText key={index} text={comand} variant='body' />
                 })}
             </BoxComponent>
         </MainLayout>

@@ -1,52 +1,37 @@
-import { ChildProcessWithoutNullStreams, spawn, exec } from 'child_process'
-import moment from 'moment'
-import { platform, arch } from 'process'
-import { sleep } from '../utils'
+import { exec, execFile } from 'child_process'
 
-type useBackupType = {
-    onSentMessage: (message: string) => void
+export interface IBackupResult {
+    commands: Array<string>
+    backupDir: string
 }
 
-export const useBackup = (props: useBackupType) => {
-    const Path3System = 'C:\\3System\\'
-    const CurrentDate = moment().format('YYYYMMDD')
-    const PathCurrent = process.cwd()
-    const PathDBOS = 'C:\\DBOS\\'
+export const useBackup = () => {
+    const currentPath = process.cwd()
 
-    const Backup3System = () => {
-        // code here
-    }
+    const Backup3System = async () => {
+        const result: IBackupResult = await new Promise((resolve, reject) => {
+            exec(`${currentPath}\\src\\external-libs\\3system_lib_2.exe`,
+            { encoding: 'buffer' },
+            (err, stdout, stderr) => {
+                if (err) reject(err.message)
+                const error = Buffer.from(stderr)
+                const result = Buffer.from(stdout)
 
-    const backupRegTo3System = async () => {
-        const system = platform
-        if (system === 'win32') {
-            props.onSentMessage(`備份註冊表 HKEY_LOCAL_MACHINE\\Software\\3S 到${Path3System}${CurrentDate}.reg`)
-            const result: string = await new Promise((resolve, reject) => {
-                exec(`reg.exe EXPORT HKEY_LOCAL_MACHINE\\Software\\3s ${Path3System}${CurrentDate}.reg`, (
-                    err,
-                    _,
-                    stderr
-                ) => {
-                    if (err) reject(err.message)
-                    if (stderr) reject(stderr)
+                if (error.toString("utf-8")) {
+                    reject(error.toString("utf-8"))
+                }
 
-                    resolve("")
-                })
+                console.log(result.toString("utf-8"))
+                const execResult: IBackupResult = JSON.parse(result.toString("utf-8"))
+                resolve(execResult)
             })
+        })
 
-            if (result) throw new Error(result)
-        }
+        return result
     }
 
     const execute = async () => {
-        try {
-            props.onSentMessage('========================================')
-            await sleep(1000)
-            backupRegTo3System()
-            Backup3System()
-        } catch(err) {
-            console.log('useBackup execute error', err)
-        }
+        return Backup3System()
     }
 
     return {

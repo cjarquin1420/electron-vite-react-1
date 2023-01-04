@@ -29,3 +29,9 @@ package-lock.json
 pnpm-lock.yaml
 yarn.lock
 storybook-static
+
+# c# project
+.vs
+bin
+obj
+packages

@@ -19,20 +19,15 @@ const MainScreen: React.FC = () => {
     setCommands(tempCommands)
   }, [tempCommands])
 
-  const backupUitls = useBackup({
-    onSentMessage: (message) => {
-      setLastCommand(message)
-    }
-  })
+  const backupUitls = useBackup()
 
   return (
     <BoxComponent alignItems='center'>
       <UtilitiesScreen
         commandList={commands}
         onBackup={async () => {
-          setCommands([])
-          await sleep(1000)
-          backupUitls.execute()
+          const result = await backupUitls.execute()
+          setCommands(result.commands)
         }}
       />
     </BoxComponent>
