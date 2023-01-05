@@ -1,5 +1,6 @@
 import { exec } from 'child_process'
 import { jsonParse, ProcessOptions } from '../utils'
+import * as iconv from 'iconv-lite';
 
 export interface IBackupResult {
     commands: Array<string>
@@ -8,6 +9,7 @@ export interface IBackupResult {
 
 export const useBackup = () => {
     const currentPath = process.cwd()
+    const encoding = iconv.getEncoding('GB2312');
 
     const Backup3System = async () => {
         const result: IBackupResult = await new Promise((resolve, reject) => {
