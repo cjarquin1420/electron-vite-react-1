@@ -25,6 +25,7 @@ const MainScreen: React.FC = () => {
       <UtilitiesScreen
         commandList={commands}
         onBackup={async () => {
+          setCommands([])
           const result = await backupUitls.execute()
           setCommands(result.commands)
         }}

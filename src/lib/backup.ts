@@ -1,4 +1,5 @@
 import { exec } from 'child_process'
+import { jsonParse, ProcessOptions } from '../utils'
 
 export interface IBackupResult {
     commands: Array<string>
@@ -10,7 +11,7 @@ export const useBackup = () => {
 
     const Backup3System = async () => {
         const result: IBackupResult = await new Promise((resolve, reject) => {
-            exec(`${currentPath}\\src\\external-libs\\3system_lib_2.exe`,
+            exec(`${currentPath}\\src\\external-libs\\3system_lib_2.exe ${ProcessOptions.BACKUP}`,
             { encoding: 'buffer' },
             (err, stdout, stderr) => {
                 if (err) reject(err.message)
@@ -19,10 +20,10 @@ export const useBackup = () => {
 
                 if (error.toString("utf-8")) {
                     reject(error.toString("utf-8"))
+                    return
                 }
 
-                console.log(result.toString("utf-8"))
-                const execResult: IBackupResult = JSON.parse(result.toString("utf-8"))
+                const execResult: IBackupResult = jsonParse(result.toString("utf-8")) 
                 resolve(execResult)
             })
         })

@@ -12,10 +12,22 @@ namespace _3system_lib_2
     {
         static void Main(string[] args)
         {
-            var strategyContext = new context(new backup());
-            strategyContext.execute();
-            var commandsString = JsonConvert.SerializeObject(strategyContext.get()._strategyReturn);
-            Console.WriteLine(commandsString);
+            var processToRun = (process)(args.Length > 0 ? Convert.ToInt32(args[0]) : -1);
+            context strategyContext = null;
+            if (processToRun == process.BACKUP) {
+                strategyContext = new context(new backup());
+            }
+
+            if (strategyContext != null)
+            {
+                strategyContext.execute();
+                var commandsString = JsonConvert.SerializeObject(strategyContext.get()._strategyReturn);
+                Console.WriteLine(commandsString);
+            }
+            else
+            {
+                Console.Error.WriteLine("the proccess sent is not valid");
+            }
         }
     }
 }

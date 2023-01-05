@@ -13,7 +13,6 @@ namespace _3system_lib_2.utils
     {
         string CurrentDate = DateTime.Now.ToString("yyyyMMdd", System.Globalization.DateTimeFormatInfo.InvariantInfo);
         string Path3System = "C:\\3System\\";
-        List<string> commands = new List<string>();
         string Path3SystemBackup
         {
             get {

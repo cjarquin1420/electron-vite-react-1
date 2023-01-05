@@ -56,7 +56,11 @@ export const UtilitiesScreen: React.FC<utilitiesScreenType> = ({
             <BoxComponent height='1px' backgroundColor='disabled' my='20px' />
             <BoxComponent overflowY='auto'>
                 {commandList.map((comand, index) => {
-                    return <SiliconText key={index} text={comand} variant='body' />
+                    return (
+                      <BoxComponent key={index} py={'3px'}>
+                        <SiliconText text={comand} variant='body' />
+                      </BoxComponent>
+                    )
                 })}
             </BoxComponent>
         </MainLayout>

@@ -43,7 +43,7 @@ export const variants: variantsType = {
         textTransform: 'none',
     },
     button: {
-        fontSize: 14,
+        fontSize: 11,
         fontWeight: defaultTheme.fontWeight.default,
         color: defaultTheme.color.text,
         textTransform: 'uppercase',
