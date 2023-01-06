@@ -1,6 +1,6 @@
 import { exec } from 'child_process'
 import { jsonParse, ProcessOptions } from '../utils'
-//import * as iconv from 'iconv-lite';
+import * as iconv from 'iconv-lite';
 
 export interface IBackupResult {
     commands: Array<string>
@@ -9,12 +9,11 @@ export interface IBackupResult {
 
 export const useBackup = () => {
     const currentPath = process.cwd()
-    //const encoded = iconv.encode('GBK');
 
     const Backup3System = async () => {
         const result: IBackupResult = await new Promise((resolve, reject) => {
             exec(`${currentPath}\\src\\external-libs\\3system_lib_2.exe ${ProcessOptions.BACKUP}`,
-            { encoding: 'buffer' },
+            { encoding: null },  // set encoding to utf8
             (err, stdout, stderr) => {
                 if (err) reject(err.message)
                 const error = Buffer.from(stderr)
@@ -24,9 +23,11 @@ export const useBackup = () => {
                     reject(error.toString("utf-8"))
                     return
                 }
-
+                
+                //const execResult: IBackupResult = jsonParse(iconv.decode(result, 'GBK'))
                 const execResult: IBackupResult = jsonParse(result.toString("utf-8")) 
                 resolve(execResult)
+                //console.log(execResult)
             })
         })
 
@@ -41,4 +42,3 @@ export const useBackup = () => {
         execute,
     }
 }
-
