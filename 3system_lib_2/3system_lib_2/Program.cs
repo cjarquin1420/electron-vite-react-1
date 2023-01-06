@@ -14,8 +14,12 @@ namespace _3system_lib_2
         {
             var processToRun = (process)(args.Length > 0 ? Convert.ToInt32(args[0]) : -1);
             context strategyContext = null;
-            if (processToRun == process.BACKUP) {
+            if (processToRun == process.BACKUP)
+            {
                 strategyContext = new context(new backup());
+            }
+            else if (processToRun == process.INSTALL_DBOS) {
+                strategyContext = new context(new install());
             }
 
             if (strategyContext != null)
