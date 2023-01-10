@@ -2,10 +2,9 @@ import MainScreen from './page/System/MainScreen';
 
 const App = () => {
   return (
-    <div className="App">
+    <div>
       <MainScreen />
     </div>
   );
 };
-
 export default App;
