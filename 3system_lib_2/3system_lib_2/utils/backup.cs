@@ -52,7 +52,7 @@ namespace _3system_lib_2.utils
 
             try
             {
-                _strategyReturn.commands.Add(Buffer.from("備份註冊表 HKEY_LOCAL_MACHINE\\Software\\3S 到 " + Path3System + CurrentDate + ".reg", "utf8"));
+                _strategyReturn.commands.Add("備份註冊表 HKEY_LOCAL_MACHINE\\Software\\3S 到 " + Path3System + CurrentDate + ".reg");
                 var process = new Process();
                 process.StartInfo = procStartIfo;
                 process.Start();
