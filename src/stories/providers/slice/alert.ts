@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
-import { UIRootState } from '../store'
 
 export interface IAlert {
   title: string
@@ -31,7 +30,7 @@ export const alertSlice = createSlice({
             ...action.payload,
             isOpen: true
         }
-
+        
         return state
     },
     close: (state) => {
