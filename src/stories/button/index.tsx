@@ -29,8 +29,8 @@ export const SiliconButton: React.FC<SiliconButtonType> = ({
             variant={variant}
             sx = {{
                 backgroundColor: variant === 'contained' ? defaultTheme.color.primary : undefined,
-                borderRadius: defaultTheme.radius.medium,
-                height: '40px',
+                borderRadius: defaultTheme.radius.large,
+                height: '42px',
                 mx: props.mx,
                 ml: props.ml,
                 mr: props.mr,
@@ -48,7 +48,7 @@ export const SiliconButton: React.FC<SiliconButtonType> = ({
                 <SiliconText
                     color={variant === 'contained' ? 'backgroundColor' : 'text'}
                     text={text}
-                    fontWeight='semiBold'
+                    fontWeight='bold'
                     variant='button'
                 />
             ) : null}
