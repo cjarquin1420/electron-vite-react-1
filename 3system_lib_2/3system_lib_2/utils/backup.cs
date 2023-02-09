@@ -6,29 +6,30 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using System.Text.Encoding GetEncoding;
-
 
 
 namespace _3system_lib_2.utils
 {
-    public class backup: strategy
+    public class backup : strategy
     {
         string CurrentDate = DateTime.Now.ToString("yyyyMMdd", System.Globalization.DateTimeFormatInfo.InvariantInfo);
         string Path3System = "C:\\3System\\";
         string Path3SystemBackup
         {
-            get {
+            get
+            {
                 Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.CurrentUser.CreateSubKey("Software\\3S-Phoenix\\DBOS\\Backup\\");
                 return key.GetValue("Path3SystemBackup", "\0").ToString();
             }
-            set {
+            set
+            {
                 Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.CurrentUser.CreateSubKey("Software\\3S-Phoenix\\DBOS\\Backup\\");
                 key.SetValue("Path3SystemBackup", value);
             }
         }
 
-        public backup() {
+        public backup()
+        {
             this._strategyReturn = new strategyReturn();
         }
 
@@ -52,7 +53,9 @@ namespace _3system_lib_2.utils
 
             try
             {
-                _strategyReturn.commands.Add("備份註冊表 HKEY_LOCAL_MACHINE\\Software\\3S 到 " + Path3System + CurrentDate + ".reg");
+                byte[] bytes = Encoding.GetEncoding("gb2312").GetBytes("備份註冊表 HKEY_LOCAL_MACHINE\\Software\\3S 到 " + Path3System + CurrentDate + ".reg");
+                string str = Encoding.GetEncoding("gb2312").GetString(bytes);
+                _strategyReturn.commands.Add(str);
                 var process = new Process();
                 process.StartInfo = procStartIfo;
                 process.Start();
@@ -60,10 +63,10 @@ namespace _3system_lib_2.utils
             }
             catch (Exception ex)
             {
-                throw(ex);
+                throw (ex);
             }
         }
-        
+
 
         private bool Backup3System()
         {
